@@ -23,6 +23,7 @@ class Person extends \yii\db\ActiveRecord
     public const GENDER = [
         '0' => 'Mężczyzna',
         '1' => 'Kobieta',
+        '10' => 'anonim'
     ];
     /**
      * {@inheritdoc}
@@ -95,8 +96,8 @@ class Person extends \yii\db\ActiveRecord
         $this->email = 'anonim' . $this->id . '@anonim.pl';
         $this->phone = 0;
         $this->birthdate = 0;
-        $this->gender = 0;
-        $this->description = '';
+        $this->gender = 10;
+        $this->description = 'anonim';
         $this->save(false);
     }
 

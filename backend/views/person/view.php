@@ -17,6 +17,9 @@ $this->registerJsVar('full_name',$model->full_name);
 $this->registerJsVar('age',$age);
 $this->registerJsFile('/js/display-name.min.js', ['depends' => [\yii\web\JqueryAsset::class]]);
 
+$normal = "Osoba ma $age lat <br>";
+$ano = 'Osoba zanonimizowana <br>';
+$person_age = $model->full_name === 'anonim' ? $ano : $normal;
 
 ?>
 <div class="person-view">
@@ -43,7 +46,7 @@ $this->registerJsFile('/js/display-name.min.js', ['depends' => [\yii\web\JqueryA
                 'description:ntext',
             ],
         ]);
-        echo "Osoba ma $age lat";
+        echo $person_age;
         echo '<button id="display-data" class="btn btn-primary">POKAZ DANE</button>';
     }
     ?>
