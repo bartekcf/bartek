@@ -25,10 +25,10 @@ $this->registerJsFile('/js/display-name.min.js', ['depends' => [\yii\web\JqueryA
 
     $age = Person::calculateAge($model->birthdate);
         if ($age < 18) {
-        echo 'Osoba ma mniej niz 18 lat <br>';
+        echo 'Osoba ma mniej niz 18 lat lub została zanonimizowana<br>';
         echo \yii\bootstrap5\Html::img('@web/img/od18lat.jpg', ['class' => 'img-fluid']);
     } else {
-            echo '<p>'.  Html::a('Anonimizuj', ['person/anonymize', 'id' => $model->id], ['class' => 'btn btn-primary'])  . '</p>';
+            echo '<p>'.  Html::a('Anonimizuj', ['person/anonymize', 'id' => $model->id], ['class' => 'btn btn-primary', 'data' => ['method' => 'post']])  . '</p>';
         echo DetailView::widget([
             'model' => $model,
             'attributes' => [
@@ -44,8 +44,9 @@ $this->registerJsFile('/js/display-name.min.js', ['depends' => [\yii\web\JqueryA
             ],
         ]);
         echo "Osoba ma $age lat";
+        echo '<button id="display-data" class="btn btn-primary">POKAZ DANE</button>';
     }
     ?>
 </div>
 
-<button id="display-data" class="btn btn-primary">POKAZ DANE</button>
+

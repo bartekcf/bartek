@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\SerialColumn;
 use backend\models\Person;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -10,7 +11,7 @@ use yii\grid\GridView;
 /** @var backend\models\PersonSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'People';
+$this->title = 'Osoby';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Person', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dodaj osobę', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => SerialColumn::class],
 
             'id',
             'full_name',
@@ -40,9 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'description:ntext',
             [
                 'class' => ActionColumn::class,
+                'template' => '{view}',
                 'urlCreator' => static function ($action, Person $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
@@ -50,11 +52,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<?php
-$model = \yii\helpers\ArrayHelper::map(Person::find()->all(), 'id' , 'birthdate');
-
-
-echo Person::calculateAge($model[1]);
-
-?>
 

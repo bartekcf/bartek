@@ -71,6 +71,9 @@ class Person extends \yii\db\ActiveRecord
      */
     public static function calculateAge($birthdate): string
     {
+        if(!$birthdate ){
+            return 0;
+        }
         $currentDate = new DateTime();
         $birthdateDate = new DateTime($birthdate);
         return $birthdateDate->diff($currentDate)->y;

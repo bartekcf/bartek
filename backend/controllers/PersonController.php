@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\Person;
 use backend\models\PersonSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,22 +17,23 @@ use yii\web\Response;
 class PersonController extends Controller
 {
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
     }
+
 
     /**
      * Lists all Person models.
@@ -93,14 +95,14 @@ class PersonController extends Controller
      */
     public function actionAnonymize(int $id): string
     {
-        $request = Yii::$app->request;
         $model = $this->findModel($id);
 
-        if ($model->load($request->post()) && $model->validate()) {
-
-            $model->anonymize();
+        if(Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            if ($model->validate()) {
+                $model->anonymize();
+            }
         }
-
         return $this->render('view', [
             'model' => $model,
         ]);

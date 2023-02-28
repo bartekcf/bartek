@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var backend\models\Person $model */
 
-$this->title = 'Create Person';
-$this->params['breadcrumbs'][] = ['label' => 'People', 'url' => ['index']];
+$this->title = 'Utwórz osobę';
+$this->params['breadcrumbs'][] = ['label' => 'Osoby', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="person-create">
