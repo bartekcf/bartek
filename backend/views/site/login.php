@@ -32,5 +32,3 @@ $this->title = 'Login';
 </div>
 
 <?php
-
-echo Yii::$app->security->generatePasswordHash('bartek123');

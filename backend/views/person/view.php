@@ -31,7 +31,7 @@ $person_age = $model->full_name === 'anonim' ? $ano : $normal;
         echo 'Osoba ma mniej niz 18 lat lub została zanonimizowana<br>';
         echo \yii\bootstrap5\Html::img('@web/img/od18lat.jpg', ['class' => 'img-fluid']);
     } else {
-            echo '<p>'.  Html::a('Anonimizuj', ['person/anonymize', 'id' => $model->id], ['class' => 'btn btn-primary', 'data' => ['method' => 'post']])  . '</p>';
+            echo '<p>'.  Html::a('Anonimizuj', ['person/anonymize', 'id' => $model->id], ['class' => 'btn btn-danger', 'data' => ['method' => 'post']])  . '</p>';
         echo DetailView::widget([
             'model' => $model,
             'attributes' => [
@@ -47,7 +47,7 @@ $person_age = $model->full_name === 'anonim' ? $ano : $normal;
             ],
         ]);
         echo $person_age;
-        echo '<button id="display-data" class="btn btn-primary">POKAZ DANE</button>';
+        echo '<button id="display-data" class="btn btn-success">POKAZ DANE</button>';
     }
     ?>
 </div>

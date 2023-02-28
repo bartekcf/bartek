@@ -41,6 +41,8 @@ class Person extends \yii\db\ActiveRecord
         return [
             [['full_name', 'email', 'phone', 'birthdate', 'gender'], 'required'],
             [['birthdate'], 'safe'],
+            [['birthdate'], 'date', 'format' => 'yyyy-mm-dd'],
+            [['birthdate'], 'compare', 'compareValue' => date('Y-m-d', strtotime('-3 years')), 'operator' => '<=', 'message' => 'data nie moze byc nowsza niz dzien 3 lata wstecz'],
             [['gender'], 'integer'],
             [['email'],'email', 'message' => 'Email nie poprawny'],
             [['description'], 'string'],

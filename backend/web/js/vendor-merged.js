@@ -1,1 +1,1 @@
-$(document).on("click","#display-data",function(a){alert(full_name+" lat "+age)});
+$(document).on("click","#display-data",function(a){100<age&&(age="anonim"),alert(full_name+" lat "+age)});

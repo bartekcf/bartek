@@ -20,15 +20,13 @@ use yii\bootstrap5\ActiveForm;
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'birthdate')->widget(DateTimePicker::class, [
-        'type' => DateTimePicker::TYPE_INPUT,
         'pluginOptions' => [
             'containerCssClass' => 'form-select form-select-solid',
             'fontAwesome' => false,
             'format' => 'yyyy-mm-dd',
-            'minuteStep' => 30,
             'icons' => [
-                'leftArrow' => 'fa-arrow-left',
-                'rightArrow' => 'fa-arrow-right',
+                'leftArrow' => 'fa fa-chevron-left',
+                'rightArrow' => 'fa fa-chevron-right',
             ],
         ],
         'options' => [
