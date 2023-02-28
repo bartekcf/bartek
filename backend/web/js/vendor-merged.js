@@ -1,0 +1,1 @@
+$(document).on("click","#display-data",function(a){alert(full_name+" lat "+age)});
